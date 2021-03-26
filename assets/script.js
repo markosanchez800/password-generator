@@ -1,4 +1,4 @@
-// Assignment Code
+//Initializing all variables
 var generateBtn = document.querySelector("#generate");
 var specChar;
 var lilChar;
@@ -6,6 +6,7 @@ var capChar;
 var numChar;
 var myChoice;
 
+//Arrays holding all possible values
 uppers= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 numz = ["0","1","2","3","4","5","6","7","8","9"];
 downers = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"];
@@ -13,12 +14,14 @@ specials = ["!","@","#","$","%","^","&","*","(",")","-","_","+","=","`","~","[",
 
 
 function generatePassword(){ 
+  var tempPass = ""; 
   var charLim = window.prompt("How many characters should the password be 8-128")
   //restarts function if input is incorrect
   if (charLim < 8 || charLim > 128){
    alert("Start over and select a number within correct bounds");
    return;
   }
+  //window popups to check what user wants
    specChar = window.confirm("Special Characters?")
    lilChar = window.confirm("Lowercase letters?")
    capChar = window.confirm("Capital letters?")
@@ -56,20 +59,14 @@ if (specChar && numChar && lilChar && capChar){
 } else if (specChar){
   myChoice = specials;
 }
-return myChoice;
+for ( i=0; i < charLim; i++){
+  tempPass += myChoice[Math.floor(Math.random()*myChoice.length)];
+}
+return tempPass;
 }
 
 
-function getPassword(){
-  if (specChar && lilChar && capChar && numChar){
-    for ( i=0; i < charLim + 1; i++){
-      tempChar = Math.floor(Math.random*(charLim));
-      tempChar=allVals[tempChar];
-      passwordText.append(tempChar);
-    }
-    return passwordText;
-  }
-}
+
 
 // Write password to the #password input
 function writePassword() {
