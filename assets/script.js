@@ -58,6 +58,8 @@ if (specChar && numChar && lilChar && capChar){
   myChoice = numz;
 } else if (specChar){
   myChoice = specials;
+} else {
+  generatePassword();
 }
 for ( i=0; i < charLim; i++){
   tempPass += myChoice[Math.floor(Math.random()*myChoice.length)];
